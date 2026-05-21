@@ -92,6 +92,8 @@ router.post('/', async (req, res) => {
 // GET - listar contribuintes
 router.get('/', verificarToken, async (req, res) => {
 
+    try {
+
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
 
@@ -111,6 +113,15 @@ router.get('/', verificarToken, async (req, res) => {
     }
 
     res.status(200).json(data);
+
+    } catch (err) {
+
+        console.error(err);
+
+        return res.status(500).json({
+            erro: 'Erro interno do servidor'
+        });
+    }
 });
 
 // GET - buscar contribuinte por ID

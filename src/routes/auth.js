@@ -30,53 +30,63 @@ const supabase = require('../services/supabase');
 
 router.post('/login', async (req, res) => {
 
-    const { email, senha } = req.body;
-
-    // buscar usuario 
-
-    const { data: usuario, error } = await supabase
-        .from('usuarios')
-        .select('*')
-        .eq('email', email)
-        .eq('ativo', true)
-        .single();
-
-    if (error || !usuario) {
-        return res.status(401).json({
-            erro: 'Usuário ou senha inválidos'
-        });
-    }
-
-    // verificar senha
-
-    const senhaValida = await bcrypt.compare(
-        senha,
-        usuario.senha_hash
-    );
+    try {
     
-    if (!senhaValida) {
-        return res.status(401).json({
-            erro: 'Usuário ou senha inválidos'
+        const { email, senha } = req.body;
+
+        // buscar usuario 
+
+        const { data: usuario, error } = await supabase
+            .from('usuarios')
+            .select('*')
+            .eq('email', email)
+            .eq('ativo', true)
+            .single();
+
+        if (error || !usuario) {
+            return res.status(401).json({
+                erro: 'Usuário ou senha inválidos'
         });
     }
 
-    // gerar token
+        // verificar senha
 
-    const token = jwt.sign(
-        {
-            id: usuario.id,
-            email: usuario.email,
-            cargo: usuario.cargo
-        },
-        process.env.JWT_SECRET,
-        {
-            expiresIn: '1h'
+        const senhaValida = await bcrypt.compare(
+            senha,
+            usuario.senha_hash
+        );
+    
+        if (!senhaValida) {
+            return res.status(401).json({
+                erro: 'Usuário ou senha inválidos'
+            });
         }
-    );
 
-    res.status(200).json({
-        token
-    });
+        // gerar token
+
+        const token = jwt.sign(
+            {
+                id: usuario.id,
+                email: usuario.email,
+                cargo: usuario.cargo
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '1h'
+            }
+        );
+
+        res.status(200).json({
+            token
+        });
+        } catch (err) {
+
+        console.error(err);
+
+        return res.status(500).json({
+            erro: 'Erro interno do servidor'
+        });
+    }
 });
 
 module.exports = router;
