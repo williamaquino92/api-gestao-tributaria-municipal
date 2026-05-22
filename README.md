@@ -2,51 +2,65 @@
 
 API REST desenvolvida para estudos práticos de backend voltados à gestão tributária municipal.
 
-O projeto foi criado com foco em aprendizado real de desenvolvimento backend utilizando Node.js, PostgreSQL e autenticação JWT, simulando funcionalidades comuns em sistemas públicos e corporativos.
+O projeto simula funcionalidades comuns de sistemas públicos e corporativos, com foco em autenticação JWT, controle de acesso, integração com PostgreSQL e documentação de APIs.
 
 ---
 
 ## Tecnologias Utilizadas
 
-* Node.js
-* Express
-* PostgreSQL
-* Supabase
-* JWT (JSON Web Token)
-* Bcrypt
-* Swagger
-* Thunder Client / Postman
+- Node.js
+- Express
+- PostgreSQL
+- Supabase
+- JWT (JSON Web Token)
+- Bcrypt
+- Swagger / OpenAPI
+- Thunder Client / Postman
 
 ---
 
-## Funcionalidades Implementadas
+## Funcionalidades
 
-### Contribuintes
+### Gestão de Contribuintes
 
-* Cadastro de contribuintes
-* Listagem de contribuintes ativos
-* Busca por ID
-* Atualização de cadastro
-* Exclusão lógica (`ativo = false`)
-* Paginação de resultados
+- Cadastro de contribuintes
+- Listagem de contribuintes ativos
+- Busca por ID
+- Atualização de cadastro
+- Exclusão lógica (`ativo = false`)
+- Paginação de resultados
 
-### Autenticação
+### Autenticação e Segurança
 
-* Login com JWT
-* Middleware de autenticação
-* Proteção de rotas
-* Controle de acesso por cargo (ADMIN)
+- Login com JWT
+- Middleware de autenticação
+- Proteção de rotas
+- Controle de acesso por perfil (ADMIN)
+- Hash de senha com Bcrypt
+- Tratamento de erros com try/catch
 
 ### Documentação
 
-* Swagger/OpenAPI
-* Testes integrados via Swagger UI
+- Swagger/OpenAPI
+- Testes integrados via Swagger UI
+
+---
+
+## API Online
+
+🔗 https://api-gestao-tributaria-municipal-production.up.railway.app
+
+---
+
+## Swagger Online
+
+📄 https://api-gestao-tributaria-municipal-production.up.railway.app/api-docs
 
 ---
 
 ## Estrutura do Projeto
 
-```bash id="k8m3rx"
+```bash
 src/
 ├── config/
 ├── middleware/
@@ -58,15 +72,15 @@ src/
 
 ## Instalação
 
-```bash id="z4n7qp"
+```bash
 git clone https://github.com/williamaquino92/api-gestao-tributaria-municipal.git
 ```
 
-```bash id="x2v9lt"
+```bash
 cd api-gestao-tributaria-municipal
 ```
 
-```bash id="u6r1mw"
+```bash
 npm install
 ```
 
@@ -76,7 +90,7 @@ npm install
 
 Crie um arquivo `.env` na raiz do projeto:
 
-```env id="p9w2ka"
+```env
 SUPABASE_URL=sua_url
 SUPABASE_KEY=sua_key
 JWT_SECRET=sua_chave_jwt
@@ -86,13 +100,13 @@ JWT_SECRET=sua_chave_jwt
 
 ## Executando o Projeto
 
-```bash id="c5t8yn"
+```bash
 npm run dev
 ```
 
-Servidor:
+Servidor local:
 
-```txt id="d7m4qp"
+```txt
 http://localhost:3000
 ```
 
@@ -100,7 +114,7 @@ http://localhost:3000
 
 ## Documentação Swagger
 
-```txt id="f1x6rv"
+```txt
 http://localhost:3000/api-docs
 ```
 
@@ -110,7 +124,7 @@ http://localhost:3000/api-docs
 
 ### POST `/auth/login`
 
-```json id="h3q9zb"
+```json
 {
   "email": "admin@prefeitura.com",
   "senha": "123"
@@ -123,37 +137,41 @@ http://localhost:3000/api-docs
 
 Adicionar no Header:
 
-```txt id="j8v2nc"
+```txt
 Authorization: Bearer SEU_TOKEN
 ```
 
 ---
 
-## Aprendizados do Projeto
+## Conceitos Praticados
 
 Durante o desenvolvimento foram praticados conceitos importantes de backend:
 
-* APIs REST
-* Estruturação de rotas
-* Middleware
-* JWT
-* Hash de senha
-* Controle de acesso
-* Integração com PostgreSQL
-* Debugging
-* Git e GitHub
-* Documentação de APIs
+- APIs REST
+- Estruturação de rotas
+- Middlewares
+- JWT
+- Hash de senha
+- Controle de acesso (RBAC)
+- Integração com PostgreSQL
+- Supabase
+- Debugging
+- Deploy em produção
+- Git e GitHub
+- Swagger/OpenAPI
+- Tratamento de erros
+- Versionamento
 
 ---
 
 ## Próximos Passos
 
-* Deploy da API
-* Frontend integrado
-* Docker
-* Logs de auditoria
-* Refresh Token
-* CI/CD
+- Frontend integrado
+- Docker
+- Logs de auditoria
+- Refresh Token
+- CI/CD
+- Testes automatizados
 
 ---
 
@@ -173,9 +191,11 @@ Durante o desenvolvimento foram praticados conceitos importantes de backend:
 
 ![GET](./assets/swagger-contribuintes.png)
 
+---
+
 ## Autor
 
 William Aquino
 
-LinkedIn:
+LinkedIn:  
 https://www.linkedin.com/in/williamaquino92/
