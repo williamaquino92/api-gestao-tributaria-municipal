@@ -11,6 +11,13 @@ const authRoutes = require('./routes/auth');
 
 app.use(cors());
 app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.json({
+        mensagem: 'API Gestão Tributária Municipal online'
+    });
+});
+
 app.use('/auth', authRoutes);
 app.use('/contribuintes', contribuintesRoutes);
 
